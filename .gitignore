@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Secrets & sessions
+.env
+session/
+cookies/
+
+# Media & temp files
+clips/
+processed/
+uploaded/
+buffer/
+temp/
+logs/
+*.mp4
+*.ts
+*.m3u8
+
+# State files
+stream_state.json
+clips_score.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+package-lock.json

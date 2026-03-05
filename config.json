@@ -1,0 +1,101 @@
+{
+    "channels": [
+        "lonche",
+        "willito",
+        "westcol",
+        "lasapaaaaa",
+        "chanty",
+        "Juanferlamata"
+    ],
+    "clip_settings": {
+        "min_duration_sec": 15,
+        "max_duration_sec": 60,
+        "preferred_duration_sec": 30,
+        "max_clips_per_hour_per_channel": 5,
+        "filter_by": "most_viewed",
+        "min_views_threshold": 50
+    },
+    "video_settings": {
+        "output_width": 1080,
+        "output_height": 1920,
+        "watermark_enabled": true,
+        "watermark_font_size": 42,
+        "watermark_position": "top_center",
+        "watermark_opacity": 0.8,
+        "subtitles_enabled": true,
+        "whisper_model": "base",
+        "output_format": "mp4",
+        "video_bitrate": "4M",
+        "audio_bitrate": "192k"
+    },
+    "tiktok_settings": {
+        "upload_delay_min_sec": 3,
+        "upload_delay_max_sec": 10,
+        "max_uploads_per_day": 20,
+        "hashtags_default": ["kick", "clips", "viral", "gaming", "stream", "funny", "westcol", "lonche", "willito", "lasapaaaaa", "chanty", "juanferlamata", "fyp", "foryoupage", "parati", "viral", "trending", "tiktok", "foryoupage"],
+        "title_max_length": 150,
+        "use_api": false,
+        "headless_browser": false
+    },
+    "monitor_settings": {
+        "check_interval_sec": 30,
+        "engagement_threshold_viewers": 500,
+        "engagement_threshold_chat_rate": 20,
+        "retry_on_error_sec": 60
+    },
+    "paths": {
+        "clips_dir": "./clips",
+        "processed_dir": "./processed",
+        "uploaded_dir": "./uploaded",
+        "logs_dir": "./logs",
+        "temp_dir": "./temp",
+        "cookies_dir": "./cookies"
+    },
+    "viral_detection": {
+        "msgs_per_min_threshold": 50,
+        "viewers_threshold": 1000,
+        "min_viral_score": 7,
+        "hype_emotes": ["KEKW", "PogChamp", "OMEGALUL", "LULW", "LUL", "MonkaS", "Kappa", "PepeHands", "POGGERS", "catJAM", "ICANT", "EZ", "ModTime", "LETSGO", "HYPE"]
+    },
+    "stream_detection": {
+        "recheck_interval_min": 15,
+        "vod_recent_hours": 48,
+        "vod_old_hours": 168,
+        "audio_peak_segment_sec": 60,
+        "audio_peak_top_n": 5,
+        "live_analysis_interval_sec": 15,
+        "live_analysis_duration_sec": 120,
+        "max_vod_clips": 3,
+        "fallback_tools": ["streamlink", "yt-dlp"]
+    },
+    "limits": {
+        "clips_per_day": 999,
+        "clips_per_channel": 999,
+        "min_viral_score": 5,
+        "min_hours_between_posts": 0,
+        "no_publish_start_hour": 1,
+        "no_publish_end_hour": 6
+    },
+    "peak_hours": [7, 12, 19, 20.5, 22],
+    "timezone": "America/Bogota",
+    "kick_referral": "https://kick.com?ref=TU_REF",
+    "dashboard": {
+        "refresh_interval_ms": 10000
+    },
+    "pipeline": {
+        "min_peak_score": 5,
+        "peak_cooldown_sec": 90,
+        "clip_duration_sec": 55,
+        "max_upload_retries": 2,
+        "delete_after_upload": true,
+        "max_concurrent_ffmpeg": 1,
+        "ffmpeg_preset": "ultrafast",
+        "monitor_sleep_sec": 1.0,
+        "vod_segment_sec": 30,
+        "vod_scan_interval_min": 10,
+        "channel_check_interval_sec": 60,
+        "chat_window_sec": 8,
+        "baseline_window_sec": 120,
+        "status_display_interval_sec": 30
+    }
+}
