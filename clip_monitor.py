@@ -138,6 +138,68 @@ def get_channel_info(session, channel_name):
         }
 
 
+def get_recent_vods(session, channel_name, hours=48):
+    """
+    Obtiene VODs recientes de un canal.
+    Retorna lista de dicts con: id, title, url, start_sec, duration, view_count.
+    """
+    ua = random.choice(USER_AGENTS)
+    vods = []
+    
+    try:
+        info = get_channel_info(session, channel_name)
+        channel_id = info.get("channel_id")
+        if not channel_id:
+            return vods
+        
+        url = f"{API_V2}/channels/{channel_id}/videos"
+        headers = {
+            "User-Agent": ua,
+            "Accept": "application/json",
+            "Referer": f"https://kick.com/{channel_name}",
+        }
+        
+        res = session.get(url, headers=headers, timeout=20)
+        if res.status_code != 200:
+            return vods
+        
+        data = res.json()
+        videos = data.get("videos", [])
+        
+        now = datetime.utcnow()
+        for vid in videos:
+            started_at = vid.get("started_at", "")
+            if not started_at:
+                continue
+            
+            try:
+                dt = datetime.fromisoformat(started_at.replace("Z", "+00:00"))
+                age_hours = (now - dt.replace(tzinfo=None)).total_seconds() / 3600
+            except:
+                age_hours = hours + 1
+            
+            if age_hours > hours:
+                continue
+            
+            vid_id = vid.get("id")
+            hls_url = f"https://kick.com/api/v1/videos/{vid_id}/m3u8"
+            
+            vods.append({
+                "id": vid_id,
+                "title": vid.get("title", ""),
+                "url": hls_url,
+                "start_sec": 1800,
+                "duration": min(vid.get("duration", 60), 60),
+                "view_count": vid.get("views", 0),
+                "started_at": started_at,
+            })
+        
+        return vods
+        
+    except Exception as e:
+        return []
+
+
 def check_engagement(session, channel_name, channel_id, chatroom_id):
     """
     Analiza el nivel de engagement del canal.
